@@ -1,0 +1,67 @@
+---
+# AWS connection configuration
+aws:
+  AWS_S3_base_path: &AWS_S3_base_path 's3a://<your bucket path>'
+  AWS_access_key: &AWS_access_key 'your access key'
+  AWS_secret_key: &AWS_secret_key 'your secret key'
+
+# Weather configuration settings
+open_meteo:
+  url: 'https://api.open-meteo.com/v1/forecast'
+  metrics:
+  - 'temperature_2m'
+  - 'relative_humidity_2m'
+  - 'apparent_temperature'
+  - 'is_day'
+  - 'precipitation' 
+  - 'rain'
+  - 'showers'
+  - 'snowfall'
+  - 'weather_code'
+  - 'cloud_cover'
+  - 'pressure_msl'
+  - 'surface_pressure'
+  - 'wind_speed_10m'
+  - 'wind_direction_10m'
+  - 'wind_gusts_10m'
+  forecast_days: 1
+  expire_after: 3600
+  retries: 5
+  backoff_factor: 0.2
+
+spark:
+  app_name: SmartTransportStreaming
+  mvn_spark_groupId: 'org.apache.spark'
+  mvn_spark_artifactId: 'spark-sql-kafka-0-10_2.13'
+  mvn_spark_version: '3.5.0'
+  mvn_hadoop_groupId: 'org.apache.hadoop'
+  mvn_hadoop_artifactId: 'hadoop-aws'
+  mvn_hadoop_version: '3.3.1'
+    
+  mvn_java_groupId: 'com.amazonaws'
+  mvn_java_artifactId: 'aws-java-sdk'
+  mvn_java_version: '1.11.469'
+    
+  s3_impl_config: 'org.apache.hadoop.fs.s3a.S3AFileSystem'
+  s3_base_path: *AWS_S3_base_path
+  s3_access_key: *AWS_access_key
+  s3_secret_key: *AWS_secret_key
+  s3_credentials_provider: 'org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider'
+
+  kafka_broker: 'broker:29092'
+
+# Program constants
+main_program:
+  update_freq: 4 # Generate new data frequency in seconds 
+  start_loc_lat: 32.0865
+  start_loc_lon: 34.7914
+  end_loc_lat: 32.0780
+  end_loc_lon: 34.7864
+  kafka_bootstrap_servers: 'localhost:9092'
+
+  vehicle_topic: vehicle_topic
+  gps_topic: gps_topic
+  traffic_topic: traffic_topic
+  weather_topic: weather_topic
+  emergency_topic: emergency_topic
+...
