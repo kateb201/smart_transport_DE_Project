@@ -37,8 +37,6 @@ The system simulates data generation from various IoT sensors and processes this
 
 * **Interactive Querying:** Enables interactive querying of data through AWS Athena.
 
-* **Insightful Visualization:** Provides data visualization and analytics through Looker dashboards.
-
 * **Containerized Deployment:** Employs Docker for easy deployment and environment consistency.
 
 ## Technologies Used
@@ -59,9 +57,6 @@ The system simulates data generation from various IoT sensors and processes this
 * Containerization:
     * Docker
 
-* Data Visualization:
-    * Looker
-
 ## Prerequisites
 
 Installed Software:
@@ -71,8 +66,6 @@ Installed Software:
 * Apache Kafka (Dockerized Kafka)
 * Apache Spark
 * AWS Account with necessary permissions for S3, Glue, Athena.
-* Google Looker account
-
 
 ## AWS Credentials and Constants:
 
@@ -97,7 +90,6 @@ docker compose up --build -d
 * **S3 Bucket:**  Create an S3 bucket to store the processed data
 * **Glue Crawler:** Configure a Glue crawler to crawl the S3 bucket and update the data catalog
 * **Athena:** Set up Athena to query data from the data catalog
-* **Looker:** Add data to Looker for visualization.
 
 Every service should have a dedicated IAM role with its permissions. 
 
@@ -157,9 +149,6 @@ The Spark Consumer will consume the data from the topics according to the schema
 
 ### 4. Querying the data with Athena
 * Use the AWS Athena console to write and execute SQL queries on the processed data.
-
-### 5. Visualizing Data with Looker
-* Access the Looker dashboard to visualize and derive insights from the data queried in Athena. 
 
 ## Project Structure
 ```bash
